@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"></meta>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script type="text/javascript">
+    let loc = "<%= loc %>"
+    let x = "<%= cordX %>";
+    x = x.match(/-?\d+(?:\.\d+)?/g).map(Number);
+    let y = "<%= cordY %>";
+    y = y.match(/-?\d+(?:\.\d+)?/g).map(Number);
+    let acc = "<%= acc %>";
+    let colors = ["maroon","purple","green","navy","teal"];
+    window.onload=function () {
+      var cvs = document.getElementById("cvs");
+      var ctx = cvs.getContext("2d");
+      ctx.font = "20pt Arial";
+      ctx.fillText("Accuracy: " + acc + "%", 620, 50)
+      ctx.fillText("Location: " + loc, 620, 100)
+      ctx.globalAlpha = 1;
+      ctx.strokeStyle = "black";
+      ctx.beginPath();
+      ctx.moveTo(0, 200);
+      ctx.lineTo(600, 200);
+      ctx.moveTo(0, 400);
+      ctx.lineTo(600, 400);
+      ctx.moveTo(200, 0);
+      ctx.lineTo(200, 600);
+      ctx.moveTo(400, 0);
+      ctx.lineTo(400, 600);
+      ctx.moveTo(0, 0);
+      ctx.lineTo(0, 600);
+      ctx.moveTo(0, 600);
+      ctx.lineTo(600, 600);
+      ctx.moveTo(600, 600);
+      ctx.lineTo(600, 0);
+      ctx.moveTo(0, 0);
+      ctx.lineTo(600, 0);
+      ctx.closePath();
+      ctx.stroke();
+      for (let i = 0;i<5;i++){
+        ctx.fillStyle = colors[i];
+        ctx.fillRect(x[i]*40-5, (15-y[i])*40-5, 10, 10);
+      }
+   
+
+    }
+    function getData(pageName) {
+      var req = new XMLHttpRequest();
+      req.open("get", "http://localhost:3000/");
+      req.onload = function () {
+        var content = document.getElementById("content");
+        content.innerHTML = this.responseText;
+      };
+      req.send();
+    }
+
+    </script>
+
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <canvas id="cvs" width="800" height="600" style="border:0px solid #000000"></canvas>
+    <div>
+      <span onclick="getData('/');">重新輸入位置</span>
+    </div>
+    <div style="width: 400px; height: 300px">
+      <canvas id="myChart"></canvas>
+    </div>
+    <script type="text/javascript">
+      var ctx = document.getElementById('myChart');
+      var t1 = loc;
+      var t2 = arr;
+      var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['一月', '二月', '三月'],
+          datasets: [{
+            label: '銷售業績(百萬)',
+            data: [60, 49, 72]
+          }]
+        }
+      });
+    </script>
+  </body>
+  <body id = "content"></body>
+</html>

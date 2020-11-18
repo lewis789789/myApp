@@ -1,0 +1,2 @@
+延遲時間用constant
+{"location":"1","x":"3.0","y":"12.2","rand":"10","acc":80,"cordX":[],"cordY":[]}
