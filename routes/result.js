@@ -36,7 +36,8 @@ router.post('/', urlencodedParser, function (req, res) {
       cordX: triAns.cordX,
       cordY: triAns.cordY,
       acc: triAns.acc,
-      loc: triAns.location
+      loc: triAns.location,
+      qty: triAns.quantity
     });
     res.end();
   });

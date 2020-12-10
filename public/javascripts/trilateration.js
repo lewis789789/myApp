@@ -10,7 +10,7 @@ let newArray = [0,0,0];
 let array1 = [];
 let array2 = [];
 let array3 = [];
-let qty = 5;
+let qty = locData.quantity;
 let x,y;
 let cordX = [];
 let cordY = [];

@@ -11,6 +11,7 @@
     x = x.match(/-?\d+(?:\.\d+)?/g).map(Number);
     let y = "<%= cordY %>";
     y = y.match(/-?\d+(?:\.\d+)?/g).map(Number);
+    let qty = "<%= qty %>";
     let acc = "<%= acc %>";
     let colors = ["maroon","purple","green","navy","teal"];
     window.onload=function () {
@@ -40,8 +41,8 @@
       ctx.lineTo(600, 0);
       ctx.closePath();
       ctx.stroke();
-      for (let i = 0;i<5;i++){
-        ctx.fillStyle = colors[i];
+      for (let i = 0;i<qty;i++){
+        ctx.fillStyle = "black";
         ctx.fillRect(x[i]*40-5, (15-y[i])*40-5, 10, 10);
       }
    
@@ -71,18 +72,18 @@
     </div>
     <script type="text/javascript">
       var ctx = document.getElementById('myChart');
-      var t1 = loc;
-      var t2 = arr;
-      var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ['一月', '二月', '三月'],
-          datasets: [{
-            label: '銷售業績(百萬)',
-            data: [60, 49, 72]
-          }]
-        }
-      });
+      // var t1 = loc;
+      // var t2 = arr;
+      // var myChart = new Chart(ctx, {
+      //   type: 'line',
+      //   data: {
+      //     labels: ['一月', '二月', '三月'],
+      //     datasets: [{
+      //       label: '銷售業績(百萬)',
+      //       data: [60, 49, 72]
+      //     }]
+      //   }
+      // });
     </script>
   </body>
   <body id = "content"></body>
