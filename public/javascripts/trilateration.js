@@ -19,7 +19,6 @@ process.on('message', (msg) => {
     locData.location = msg;
 });
 
-
 client.on('connect', function () {
     console.log("connected");
     client.subscribe("test");
